@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+import { shape, func, instanceOf } from "prop-types";
+import SearchIcon from "./assets/search.svg";
+import OptionsList from "./optionList.json";
+import "./ui.css";
+
+
+const iconOptions = ["All", "Outlined", "Filled"];
+const sizeOptions = ['18px','24px','32px','48px','64px','128px','256px','512px','1024px']
+const value = '15px';
+
+const EosForm = ({
+  inputField,
+  searchCategory,
+  searchTheme,
+  searchSize,
+  handleOnChange,
+  onSearch,
+}) => {
+  const addOptions = ["All", ...OptionsList];
+  const [category, setCategory] = useState<string>(addOptions[0]);
+  const [theme, setTheme] = useState<string>(iconOptions[0]);
+  const [size, setSize] = useState<string>(sizeOptions[0]);
+  const [color, setColor] = useState<string>("#000000");
+  const options = addOptions.map((el) => (
+    <option value={el} key={el}>
+      {el}
+    </option>
+  ));
+
+  return (
+    <div>
+      <div className="search-bar">
+        <div style={{ margin: "auto 5px" }}>
+          <img
+            src={SearchIcon}
+            alt="maginifying glass"
+            style={{ width: "20px", height: "20px" }}
+          />
+        </div>
+        <div className="input-field">
+          <input
+            ref={inputField}
+            type="search"
+            placeholder="Search"
+            onChange={handleOnChange}
+          />
+        </div>
+      </div>
+      <div className="select-container">
+        <div className="category">
+          <select
+            value={category}
+            className="select-tag"
+            ref={searchCategory}
+            id="category"
+            onChange={(event) => {
+              setCategory(event.target.value);
+              onSearch();
+            }}
+          >
+            {options}
+          </select>
+        </div>
+        <div className="theme">
+          <select
+            value={theme}
+            className="select-tag"
+            ref={searchTheme}
+            onChange={(event) => {
+              setTheme(event.target.value);
+              onSearch();
+            }}
+          >
+            {iconOptions.map((iconOption) => (
+              <option key={iconOption} value={iconOption}>
+                {iconOption}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="size">
+          <select
+            value={size}
+            className="select-tag"
+            ref={searchSize}
+            onChange={(event) => {
+              setSize(event.target.value);
+              onSearch();
+            }}
+          >
+            {sizeOptions.map((sizeOption) => (
+              <option key={sizeOption} value={sizeOption}>
+                {sizeOption}
+              </option>
+            ))} 
+          </select>
+        </div>
+        <div className="color" style={{width:'50px', display:'inline-block'}}>
+          <input
+            type="color"
+            value={color}
+            onChange={(event) => {
+              setColor(event.target.value);
+              onSearch();
+            }}
+          />
+          </div>
+      </div>
+      <p style={{display:'inline-block', marginRight:'15px'}}>{size}</p>
+      <p style={{display:'inline-block'}}>{color}</p> 
+      
+    </div>
+  );
+};
+
+EosForm.propTypes = {
+  inputField: shape({ current: instanceOf(HTMLInputElement) }).isRequired,
+  searchCategory: shape({ current: instanceOf(HTMLSelectElement) }).isRequired,
+  searchTheme: shape({ current: instanceOf(HTMLSelectElement) }).isRequired,
+  searchSize: shape({ current: instanceOf(HTMLSelectElement) }).isRequired,
+  handleOnChange: func.isRequired,
+  onSearch: func.isRequired,
+};
+export default EosForm;
