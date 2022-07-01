@@ -31,11 +31,10 @@ figma.ui.onmessage = (msg: { type: string; svg: any; name: string }) => {
     figma.currentPage.selection = [icon];
   }
   if (msg[0] === "imdata") {
-    const data = msg[1] as Uint8Array
-    const imageHash = figma.createImage(new Uint8Array(data)).hash
-    const rect = figma.createRectangle()
-    rect.fills = [ { type: "IMAGE", scaleMode: "FIT", imageHash } ]
-    figma.currentPage.appendChild(rect)
-  
+    const data = msg[1] as Uint8Array;
+    const imageHash = figma.createImage(new Uint8Array(data)).hash;
+    const rect = figma.createRectangle();
+    rect.fills = [{ type: "IMAGE", scaleMode: "FIT", imageHash }];
+    figma.currentPage.appendChild(rect);
   }
 };

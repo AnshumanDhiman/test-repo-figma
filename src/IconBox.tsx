@@ -2,19 +2,17 @@ import React from "react";
 import { string, arrayOf, func, shape } from "prop-types";
 import "./ui.css";
 
-
-const Size = '48px';
-const Color = 'red';
+const Size = "48px";
+const Color = "red";
 
 const IconDiv = ({ EOSReactIcon, pushToNode, name }) => (
-
   <div
     className="image-container"
     onClick={() => {
-      pushToNode(EOSReactIcon({size:Size, color: Color}), name);
+      pushToNode(EOSReactIcon({ size: Size, color: Color }), name);
     }}
   >
-    {EOSReactIcon({ size: 'xl'})}
+    {EOSReactIcon({ size: "xl" })}
   </div>
 );
 
@@ -24,7 +22,6 @@ IconDiv.propTypes = {
   name: string.isRequired,
 };
 const IconBox = ({ option, icons, pushToNode }) => {
-
   const iconDivs = icons.map(({ EOSReactIcon, name }) => (
     <IconDiv
       key={name}

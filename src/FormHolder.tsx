@@ -24,7 +24,6 @@ const FormHolder = ({
       searchTheme={searchTheme}
       searchCategory={searchCategory}
       searchSize={searchSize}
-      
     />
     <div className="info-box">
       <EOS_INFO_FILLED />

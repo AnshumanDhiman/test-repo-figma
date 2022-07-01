@@ -4,10 +4,19 @@ import SearchIcon from "./assets/search.svg";
 import OptionsList from "./optionList.json";
 import "./ui.css";
 
-
 const iconOptions = ["All", "Outlined", "Filled"];
-const sizeOptions = ['18px','24px','32px','48px','64px','128px','256px','512px','1024px']
-const value = '15px';
+const sizeOptions = [
+  "18px",
+  "24px",
+  "32px",
+  "48px",
+  "64px",
+  "128px",
+  "256px",
+  "512px",
+  "1024px",
+];
+const value = "15px";
 
 const EosForm = ({
   inputField,
@@ -93,10 +102,13 @@ const EosForm = ({
               <option key={sizeOption} value={sizeOption}>
                 {sizeOption}
               </option>
-            ))} 
+            ))}
           </select>
         </div>
-        <div className="color" style={{width:'50px', display:'inline-block'}}>
+        <div
+          className="color"
+          style={{ width: "50px", display: "inline-block" }}
+        >
           <input
             type="color"
             value={color}
@@ -105,11 +117,10 @@ const EosForm = ({
               onSearch();
             }}
           />
-          </div>
+        </div>
       </div>
-      <p style={{display:'inline-block', marginRight:'15px'}}>{size}</p>
-      <p style={{display:'inline-block'}}>{color}</p> 
-      
+      <p style={{ display: "inline-block", marginRight: "15px" }}>{size}</p>
+      <p style={{ display: "inline-block" }}>{color}</p>
     </div>
   );
 };
